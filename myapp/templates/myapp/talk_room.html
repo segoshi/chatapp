@@ -1,1 +1,69 @@
-TR
+{% extends "./base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" type="text/css" href="{% static 'myapp/css/talk_room.css' %}" />
+{% endblock %}
+
+{% block header-title %}
+ <div class="header_container">
+    <a href={% url "myapp:friends" %} class="link back_to_friends">&lt;</a>
+    {{ friend.username }}
+    <a href="" class="link">
+        <div class="btn talkroom_btn">更新</div>
+    </a>
+</div>
+{% endblock  %}
+
+{% block content %}
+    <div class="talk_container">
+        {% for talk in talk_query %}
+            {% if talk.sender == you %}
+                <div class="you talk_item_container">
+                    <div class="nameandcontent">
+                        <div class="name">
+                            {{ you.username }}&lt;
+                        </div>
+                        <div class="content">
+                            {{ talk.content }}
+                        </div>
+                    </div>
+                    <div class="datetime">
+                        {{ talk.send_datetime | date:"m/d H:i" }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="friend talk_item_container">
+                    <div class="nameandcontent">
+                        <div class="name">
+                            &gt;{{ friend.username }}
+                        </div>
+                        <div class="content">
+                            {{talk.content}}
+                        </div>
+                    </div>
+                    <div class="datetime">
+                        {{ talk.send_datetime | date:"m/d H:i" }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock content %}
+
+
+{% block footer %}
+<footer class="footer">
+    <div class="form">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form_container">
+                {% for field in form %}
+                {{ field }}
+                {% endfor %}
+                <input type="submit" name="送信" id="talk">
+            </div>
+        </form>
+    </div>
+</footer>
+{% endblock footer %}

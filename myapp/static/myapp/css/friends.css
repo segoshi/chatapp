@@ -1,0 +1,47 @@
+.header {
+    background-color: whitesmoke;
+}
+
+.friend_wrapper {
+    overflow: scroll;
+}
+
+.friend_item_container {
+    display: flex;
+    overflow: scroll;
+
+    border: 1px solid silver;
+    height: 6vh;
+}
+
+.friend_image_wrapper {
+    width: 5vh;
+    height: 5vh;
+    border: 2px solid gray;
+    border-radius: 50%;
+
+    background-size: cover;
+    background-position: center;
+}
+
+.friend_text_wrapper {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+.friend_name {
+    font-weight: bold;
+}
+
+.talk_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-container {
+    background-color: whitesmoke;
+}

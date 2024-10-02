@@ -6,6 +6,8 @@ body{
     margin: 0;
 }
 
+
+
 /* ヘッダー */
 .header{
     width: 100vw;
@@ -32,6 +34,49 @@ body{
     font-size: 1.2rem;
     color: #000;
 }
+
+/* メイン*/
+
+.form_wrapper {
+    width: 80%;
+    margin: 40px auto;
+}
+
+
+.form_item_container {
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+
+    &:visited{
+        color: black;
+    }
+}
+
+.submit_btn_wrapper {
+    margin: 20px;
+
+    text-align: center;
+}
+
+.btn {
+    padding: 0.4em 2em;
+    border: 2px solid silver;
+    border-radius: 16px;
+    background-color: white;
+
+    font-size: 1.2em;
+    font-weight: lighter;
+    text-align: center;
+}
+
+
 
 /* フッター */
 .footer{
@@ -79,3 +124,10 @@ body{
     font-size: 0.8rem;
     color: #000;
 }
+
+
+
+
+
+
+

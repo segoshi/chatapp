@@ -9,36 +9,36 @@
     <title>DeMiAインターン</title>
 </head>
 <body>
-    {% block header %}
-    <header class="header">
-        <div class="header-container">
-            <span class="header-container__title">
-                {% block header-title %}{% endblock %}
-            </span>
-        </div>
-    </header>
-    {% endblock %}
-
-    {% block content %}
-    {% endblock %}
-
-    {% block footer %}
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-container__item">
-                <a href="{% url 'friends' %}" class="footer-item__link">
-                    <span class="footer-item__icon"><img src="{% static 'myapp/img/people-24px.svg' %}"></span>
-                    <span class="footer-item__text">友達</span>
-                </a>
+    <div class="body_container">
+        {% block header %}
+        <header class="header">
+            <div class="header-container">
+                <span class="header-container__title">
+                    {% block header-title %}{% endblock %}
+                </span>
             </div>
-            <div class="footer-container__item">
-                <a href="{% url 'setting' %}" class="footer-item__link">
-                    <span class="footer-item__icon"><img src="{% static 'myapp/img/settings-black-18dp.svg' %}"></span>
-                    <span class="footer-item__text">設定</span>
-                </a>
+        </header>
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+        {% block footer %}
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-container__item">
+                    <a href="{% url 'myapp:friends' %}" class="footer-item__link">
+                        <span class="footer-item__icon"><img src="{% static 'myapp/img/people-24px.svg' %}"></span>
+                        <span class="footer-item__text">友達</span>
+                    </a>
+                </div>
+                <div class="footer-container__item">
+                    <a href="{% url 'myapp:setting' %}" class="footer-item__link">
+                        <span class="footer-item__icon"><img src="{% static 'myapp/img/settings-black-18dp.svg' %}"></span>
+                        <span class="footer-item__text">設定</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </footer>
-    {% endblock %}
+        </footer>
+        {% endblock %}
+    </div>
 </body>
 </html>

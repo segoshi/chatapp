@@ -1,0 +1,18 @@
+{% extends "./setting_base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" type="text/css" href="{% static 'myapp/css/setting_image.css' %}" />
+{% endblock extra_style %}
+
+{% block header-title %}
+アイコン画像
+{% endblock header-title %}
+
+{% block extra_content %}
+<span>現在の画像</span>
+<div class="now_image_wrapper">
+    <img src="{{ user.user_icon_image.url}}" alt="" class="now_image">
+</div>
+
+{% endblock extra_content %}
