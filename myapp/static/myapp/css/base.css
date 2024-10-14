@@ -76,7 +76,9 @@ body{
     text-align: center;
 }
 
-
+.blue {
+    color: blue;
+}
 
 /* フッター */
 .footer{

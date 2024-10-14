@@ -278,3 +278,5 @@ $RECYCLE.BIN/
 
 .venv/
 staticfiles/
+.env
+.env_dev

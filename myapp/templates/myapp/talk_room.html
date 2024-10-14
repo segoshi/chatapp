@@ -17,7 +17,7 @@
 
 {% block content %}
     <div class="talk_container">
-        {% for talk in talk_query %}
+        {% for talk in talk_list %}
             {% if talk.sender == you %}
                 <div class="you talk_item_container">
                     <div class="nameandcontent">

@@ -13,7 +13,14 @@
 
 
 {% block content %}
+<div class="search">
+    <form action="#" method="get">
+        {% csrf_token %}
+        <input type="search" name="search" placeholder="ユーザー名で検索" value="{{ searched_name|default:"" }}">
+        <input type="submit" value="検索">
 
+    </form>
+</div>
 <div class="friend_wrapper">
     {% for friend_talk_list in  friends_havetalked %}
         <a href="{% url "myapp:talk_room" friend_talk_list.0.id %}" class="link">
@@ -57,6 +64,9 @@
             </div>
         </a>
     {% endfor %}
+    {% if nobody_found  %}
+    <p>検索条件に当てはまるユーザーは見つかりませんでした。</p>
+    {% endif %}
 </div>
 
 {% endblock content %}

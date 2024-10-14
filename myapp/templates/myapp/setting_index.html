@@ -24,7 +24,7 @@
     <a href="{% url "myapp:setting_password" user.pk %}" class="link">
         <div class="btn">パスワード変更</div>
     </a>
-    <form action="{% url "myapp:logout" %}" method="post">
+    <form action="{% url "account_logout" %}" method="post">
         {% csrf_token %}
         <input type="submit" value="ログアウト" class="btn">
     </form>

@@ -10,9 +10,13 @@
 {% endblock header-title %}
 
 {% block extra_content %}
+
+{% if  user.user_icon_image%}
 <span>現在の画像</span>
 <div class="now_image_wrapper">
     <img src="{{ user.user_icon_image.url}}" alt="" class="now_image">
 </div>
-
+{% else %}
+<p>現在、画像は設定されていません。</p>
+{% endif %}
 {% endblock extra_content %}

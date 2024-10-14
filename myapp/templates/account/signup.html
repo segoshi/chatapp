@@ -1,0 +1,29 @@
+{% extends "account/base.html" %}
+{% load allauth i18n %}
+{% block header-title %}
+    会員登録
+{% endblock header-title %}
+{% block content %}
+    <div class="blue">
+            <a href="{{ login_url }}"><p>すでにアカウントをお持ちの場合は、こちらからログインしてください。</p></a>
+    </div>
+
+    {% url 'account_signup' as action_url %}
+    <form form=form method="post" action=# tags="entrance,signup"  enctype="multipart/form-data">
+            {% csrf_token %}
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+            {% if redirect_field_value %}
+                <input type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+            {% endif %}
+            {% element button tags="prominent,signup" type="submit" %}
+                {% trans "Sign Up" %}
+            {% endelement %}
+    </form>
+{% endblock content %}
+
+{% block footer %}
+<!-- 何も表示しない -->
+{% endblock footer %}

@@ -3,7 +3,7 @@
 import os
 import sys
 
-
+'''
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'intern.settings')
@@ -15,6 +15,18 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+    execute_from_command_line(sys.argv)
+'''
+
+#読み込む設定ふぁいるを変える
+def main():
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "intern.settings.dev")
+
+    from django.core.management import execute_from_command_line
+
     execute_from_command_line(sys.argv)
 
 
