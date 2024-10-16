@@ -279,4 +279,5 @@ $RECYCLE.BIN/
 .venv/
 staticfiles/
 .env
-.env_dev
+media_local/
+.vscode/
