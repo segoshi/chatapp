@@ -53,3 +53,8 @@
 .footer-container {
     background-color: whitesmoke;
 }
+
+.pagination {
+    margin-top: 0.5rem;
+    text-align: center;
+}

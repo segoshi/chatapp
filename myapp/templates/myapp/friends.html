@@ -55,26 +55,17 @@
     <p>検索条件に当てはまるユーザーは見つかりませんでした。</p>
     {% endif %}
 
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <!-- 現在よりも前のページが存在する場合 -->
-                <a href="?page=1">&laquo; 先頭</a>
-                <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
-            {% endif %}
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
+    {% endif %}
 
-            <span class="current">
-                <!-- 現在のページ番号と、全ページ数を表示 -->
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
+    <span>{{ page_obj.number }} / {{ paginator.num_pages }}</span>
 
-            {% if page_obj.has_next %}
-                <!-- 現在よりも後のページが存在する場合 -->
-                <a href="?page={{ page_obj.next_page_number }}">次へ</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">最後 &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">次へ</a>
+    {% endif %}
+  </div>
 </div>
 
 {% endblock content %}

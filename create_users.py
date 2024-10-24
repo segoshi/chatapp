@@ -52,12 +52,14 @@ def create_users(n):
     # time フィールドを明示的に更新します。
     talks = Talk.objects.order_by("-send_datetime")[: 2 * len(user_ids)]
     for talk in talks:
-        talks.send_datetime = fakegen.date_time_this_year(tzinfo=tz.gettz("Asia/Tokyo"))
+        talk.send_datetime = fakegen.date_time_this_year(tzinfo=tz.gettz("Asia/Tokyo"))
     Talk.objects.bulk_update(talks, fields=["send_datetime"])
 
     
 #実行する
 if __name__ == "__main__":
-    print("creating users ...", end="")
+    #print("creating users ...", end="")
+    #create_users(1000)
+    print("Creating users..." end="")
     create_users(1000)
     print("done")

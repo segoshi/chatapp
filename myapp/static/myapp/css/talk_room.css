@@ -47,7 +47,7 @@
     gap:2rem
 }
 
-.nameandcontent {
+.name_and_content {
     flex:1;
 }
 
@@ -58,8 +58,8 @@
     font-size: 0.8rem;
 }
 
-.you {
-    .nameandcontent {
+.request_user{
+    .name_and_content {
         text-align: right;
 
         .name {

@@ -18,11 +18,11 @@
 {% block content %}
     <div class="talk_container">
         {% for talk in talk_list %}
-                <div class="{% if talk.sender_id == you.id %}you{% else %}friend{% endif %} talk_item_container">
-                    <div class="nameandcontent">
+                <div class="{% if talk.sender_id == request.user.id %}request_user{% else %}friend{% endif %} talk_item_container">
+                    <div class="name_and_content">
                         <div class="name">
-                            {% if talk.sender_id == you.id %}
-                            {{ you.username }}&lt;
+                            {% if talk.sender_id == request.user.id %}
+                            {{ request.user.username }}&lt;
                             {% else %}
                             &gt;{{ friend.username }}
                             {% endif %}
