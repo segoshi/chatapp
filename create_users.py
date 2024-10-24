@@ -36,13 +36,28 @@ def create_users(n):
         sent_talk = Talk(
             sender_id=my_id,
             receiver_id = random.choice(user_ids),
-            message = fakegen.text(),
+            content = fakegen.text(),
         )
         received_talk = Talk(
             sender_id = random.choice(user_ids),
             receiver_id = my_id,
-            message = fakegen.text()
+            content = fakegen.text()
         )
-        talks.extend([sent])
+        talks.extend([sent_talk, received_talk])
+    Talk.objects.bulk_create(talks, ignore_conflicts=True)
+
+    # Talk の time フィールドは auto_now_add が指定されているため、 bulk_create をするときに
+    # time フィールドが自動的に現在の時刻に設定されてしまいます。
+    # 最新の 2 * len(user_ids) 個分は先ほど作成した Talk なので、これらを改めて取得し、
+    # time フィールドを明示的に更新します。
+    talks = Talk.objects.order_by("-send_datetime")[: 2 * len(user_ids)]
+    for talk in talks:
+        talks.send_datetime = fakegen.date_time_this_year(tzinfo=tz.gettz("Asia/Tokyo"))
+    Talk.objects.bulk_update(talks, fields=["send_datetime"])
 
     
+#実行する
+if __name__ == "__main__":
+    print("creating users ...", end="")
+    create_users(1000)
+    print("done")

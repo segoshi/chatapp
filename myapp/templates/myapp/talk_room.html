@@ -18,11 +18,14 @@
 {% block content %}
     <div class="talk_container">
         {% for talk in talk_list %}
-            {% if talk.sender == you %}
-                <div class="you talk_item_container">
+                <div class="{% if talk.sender_id == you.id %}you{% else %}friend{% endif %} talk_item_container">
                     <div class="nameandcontent">
                         <div class="name">
+                            {% if talk.sender_id == you.id %}
                             {{ you.username }}&lt;
+                            {% else %}
+                            &gt;{{ friend.username }}
+                            {% endif %}
                         </div>
                         <div class="content">
                             {{ talk.content }}
@@ -32,21 +35,6 @@
                         {{ talk.send_datetime | date:"m/d H:i" }}
                     </div>
                 </div>
-            {% else %}
-                <div class="friend talk_item_container">
-                    <div class="nameandcontent">
-                        <div class="name">
-                            &gt;{{ friend.username }}
-                        </div>
-                        <div class="content">
-                            {{talk.content}}
-                        </div>
-                    </div>
-                    <div class="datetime">
-                        {{ talk.send_datetime | date:"m/d H:i" }}
-                    </div>
-                </div>
-            {% endif %}
         {% endfor %}
     </div>
 {% endblock content %}

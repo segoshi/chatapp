@@ -14,11 +14,10 @@ class SignUpForm(UserCreationForm):
 class TalkForm(ModelForm):
     
     class Meta:
+        # sender, receiverはビューで決める
         model = Talk
-        fields = ("sender","receiver", "content",)
+        fields = ("content",)
         widgets = {
-                    "sender": HiddenInput,
-                    "receiver": HiddenInput,
                     "content": TextInput,
                    }
 

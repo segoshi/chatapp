@@ -54,6 +54,7 @@
 .datetime {
     width: 10vw;
 
+    vertical-align: bottom;
     font-size: 0.8rem;
 }
 
