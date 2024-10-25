@@ -49,11 +49,14 @@
                 </div>
             </div>
         </a>
+
+    {% empty %}
+        {% if searched_text %}
+        <p>検索条件に当てはまるユーザーは見つかりませんでした。</p>
+        {% else %}
+        <p>あなた以外にユーザーはいません。</p>
+        {% endif %}
     {% endfor %}
-    
-    {% if nobody_found  %}
-    <p>検索条件に当てはまるユーザーは見つかりませんでした。</p>
-    {% endif %}
 
   <div class="pagination">
     {% if page_obj.has_previous %}

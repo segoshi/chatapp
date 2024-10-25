@@ -29,18 +29,12 @@ class Friends(LoginRequiredMixin, ListView):
         super().setup(request, *args, **kwargs)
         #検索ワードを取得
         self.searched_text = self.request.GET.get("search")
-        #検索に誰もいなかった時のフラグ
-        self.nobody_found = False
         #検索されたかで場合分け
         if self.searched_text:
             self.friends = CustomUser.objects.exclude(id=self.request.user.id).filter(Q(username__icontains=self.searched_text)|
                                                                    Q(email__icontains=self.searched_text))
-            if not self.friends.exists():
-                self.nobody_found = True
         else:
             self.friends = CustomUser.objects.exclude(id=self.request.user.id)
-
-
 
     def get_queryset(self, **kwargs: Any) -> dict[str, Any]:
         super().get_queryset()
@@ -66,7 +60,6 @@ class Friends(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         extra_context = {
-            "nobody_found": self.nobody_found,
             "searched_text": self.searched_text,
             }
         context.update(extra_context)
