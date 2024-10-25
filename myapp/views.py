@@ -27,14 +27,15 @@ class Friends(LoginRequiredMixin, ListView):
     #メソッドで共通して使う変数を設定
     def setup(self, request: HttpRequest, *args: Any, **kwargs: Any) -> None:
         super().setup(request, *args, **kwargs)
+
+        self.friends = CustomUser.objects.exclude(id=self.request.user.id).only("id", "username","email", "date_joined", "user_icon_image")
+
         #検索ワードを取得
         self.searched_text = self.request.GET.get("search")
         #検索されたかで場合分け
         if self.searched_text:
-            self.friends = CustomUser.objects.exclude(id=self.request.user.id).filter(Q(username__icontains=self.searched_text)|
-                                                                   Q(email__icontains=self.searched_text)).only("id", "username","email", "date_joined", "user_icon_image")
-        else:
-            self.friends = CustomUser.objects.exclude(id=self.request.user.id).only("id", "username","email", "date_joined", "user_icon_image")
+            self.friends = self.friends.filter(Q(username__icontains=self.searched_text)|
+                                                                   Q(email__icontains=self.searched_text))
 
     def get_queryset(self, **kwargs: Any) -> dict[str, Any]:
         super().get_queryset()
