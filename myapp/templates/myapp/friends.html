@@ -27,9 +27,9 @@
     {% for friend in object_list  %}
         <a href="{% url "myapp:talk_room" friend.id %}" class="link">
             <div class="friend_item_container">
-                {% if  friend.usere_icon_image %}
-                <div class="friend_image_wrapper" style="background-image: url({{ friend.user_icon_image.url }})">
-                </div>
+
+                {% if  friend.user_icon_image %}
+                <div class="friend_image_wrapper" style="background-image:url({{ friend.user_icon_image.url }});"></div>
                 {% endif %}
     
                 <div class="friend_text_wrapper">

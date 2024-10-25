@@ -32,9 +32,9 @@ class Friends(LoginRequiredMixin, ListView):
         #検索されたかで場合分け
         if self.searched_text:
             self.friends = CustomUser.objects.exclude(id=self.request.user.id).filter(Q(username__icontains=self.searched_text)|
-                                                                   Q(email__icontains=self.searched_text))
+                                                                   Q(email__icontains=self.searched_text)).only("id", "username","email", "date_joined", "user_icon_image")
         else:
-            self.friends = CustomUser.objects.exclude(id=self.request.user.id)
+            self.friends = CustomUser.objects.exclude(id=self.request.user.id).only("id", "username","email", "date_joined", "user_icon_image")
 
     def get_queryset(self, **kwargs: Any) -> dict[str, Any]:
         super().get_queryset()
